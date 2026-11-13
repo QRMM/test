@@ -1,72 +1,377 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2027 新年计划</title>
-    <!-- Tailwind CSS CDN for quick styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Noto Sans SC', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #f0f4ff 0%, #fdf2f8 50%, #f0fdf4 100%);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: #ffffff;
+            width: 100%;
+            max-width: 820px;
+            padding: 45px 35px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+        }
+
+        /* 头部居中区域 */
+        .header-center {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+        }
+
+        h1 {
+            font-size: 30px;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        /* 新增表单区域样式 */
+        .add-form {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .add-form input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.2s;
+            background-color: #fafcc;
+        }
+
+        .add-form input:focus {
+            border-color: #6366f1;
+            background-color: #fff;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        }
+
+        .add-form button {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.1s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+        }
+
+        .add-form button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35);
+        }
+
+        /* 计划列表 */
+        .plan-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 30px;
+        }
+
+        .plan-item {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            border-radius: 14px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        /* 预设丰富清新的多彩色系搭配 */
+        .plan-item:nth-child(6n+1) {
+            background-color: #f5f3ff;
+            border-color: #ddd6fe;
+        }
+
+        /* 淡紫 */
+        .plan-item:nth-child(6n+2) {
+            background-color: #f0fdf4;
+            border-color: #bbf7d0;
+        }
+
+        /* 薄荷绿 */
+        .plan-item:nth-child(6n+3) {
+            background-color: #fffbeb;
+            border-color: #fde68a;
+        }
+
+        /* 暖黄 */
+        .plan-item:nth-child(6n+4) {
+            background-color: #f0f9ff;
+            border-color: #bae6fd;
+        }
+
+        /* 天空蓝 */
+        .plan-item:nth-child(6n+5) {
+            background-color: #fdf2f8;
+            border-color: #fbcfe8;
+        }
+
+        /* 柔粉 */
+        .plan-item:nth-child(6n+6) {
+            background-color: #ecfdf5;
+            border-color: #a7f3d0;
+        }
+
+        /* 浅青 */
+
+        .plan-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+        }
+
+        .plan-item input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            accent-color: #6366f1;
+            cursor: pointer;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .plan-content {
+            flex: 1;
+        }
+
+        /* 可编辑的目标文本样式 */
+        .plan-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1e293b;
+            outline: none;
+            border-bottom: 1px dashed transparent;
+            padding: 2px 4px;
+            border-radius: 4px;
+            word-break: break-all;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        .plan-title:hover {
+            background-color: rgba(255, 255, 255, 0.6);
+            border-color: #cbd5e1;
+        }
+
+        .plan-title:focus {
+            background-color: #ffffff;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+        }
+
+        .plan-item.completed .plan-title {
+            text-decoration: line-through;
+            color: #94a3b8;
+            background-color: transparent !important;
+            border-color: transparent !important;
+        }
+
+        /* 删除按钮样式 */
+        .delete-btn {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            margin-left: 10px;
+        }
+
+        .delete-btn:hover {
+            color: #ef4444;
+            background-color: rgba(239, 68, 68, 0.1);
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 13px;
+            color: #64748b;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 20px;
+            font-weight: 500;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col items-center justify-center p-4">
 
-    <div class="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 border border-slate-100 transition-all duration-300 hover:shadow-2xl">
-        <!-- Header -->
-        <div class="text-center mb-8">
-            <span class="inline-block bg-indigo-50 text-indigo-600 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-2">2027 Goals</span>
-            <h1 class="text-2xl font-bold tracking-tight text-slate-900">✨ 2027 新年计划</h1>
-            <p class="text-sm text-slate-500 mt-1">健康生活，从点滴日常做起</p>
+<body>
+
+    <div class="container">
+        <!-- 加上这个居中包裹层 -->
+        <div style="text-align: center; margin-bottom: 35px;">
+            <div class="badge">2027 GOALS</div>
+            <h1>✨ 2027 新年计划</h1>
+            <div class="subtitle">健康生活，从点滴日常做起</div>
         </div>
 
-        <!-- Plan Items -->
-        <div class="space-y-4">
-            <!-- Item 1 -->
-            <label class="flex items-center p-3 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-indigo-50/30 transition cursor-pointer group">
-                <input type="checkbox" class="w-5 h-5 text-indigo-600 rounded border-slate-300 focus:ring-indigo-500 transition">
-                <div class="ml-3">
-                    <span class="block text-sm font-medium text-slate-700 group-hover:text-indigo-900 transition">每天规律睡眠 7 小时</span>
-                    <span class="block text-xs text-slate-400">充足休息，蓄力每一天</span>
-                </div>
-            </label>
-
-            <!-- Item 2 -->
-            <label class="flex items-center p-3 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-indigo-50/30 transition cursor-pointer group">
-                <input type="checkbox" class="w-5 h-5 text-indigo-600 rounded border-slate-300 focus:ring-indigo-500 transition">
-                <div class="ml-3">
-                    <span class="block text-sm font-medium text-slate-700 group-hover:text-indigo-900 transition">周末出门晒一次太阳</span>
-                    <span class="block text-xs text-slate-400">拥抱大自然，吸收维生素D</span>
-                </div>
-            </label>
-
-            <!-- Item 3 -->
-            <label class="flex items-center p-3 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-indigo-50/30 transition cursor-pointer group">
-                <input type="checkbox" class="w-5 h-5 text-indigo-600 rounded border-slate-300 focus:ring-indigo-500 transition">
-                <div class="ml-3">
-                    <span class="block text-sm font-medium text-slate-700 group-hover:text-indigo-900 transition">每周进行 3 次有氧运动</span>
-                    <span class="block text-xs text-slate-400">跑步、游泳或健身，保持活力</span>
-                </div>
-            </label>
-
-            <!-- Item 4 -->
-            <label class="flex items-center p-3 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-indigo-50/30 transition cursor-pointer group">
-                <input type="checkbox" class="w-5 h-5 text-indigo-600 rounded border-slate-300 focus:ring-indigo-500 transition">
-                <div class="ml-3">
-                    <span class="block text-sm font-medium text-slate-700 group-hover:text-indigo-900 transition">全年完成 12 本好书阅读</span>
-                    <span class="block text-xs text-slate-400">每月一本，静心沉淀自我</span>
-                </div>
-            </label>
+        <!-- 动态新增输入框 -->
+        <div class="add-form">
+            <input type="text" id="planInput" placeholder="输入新的计划目标（可直接点击文字修改）..." onkeypress="handleKeyPress(event)">
+            <button onclick="addPlan()">添加目标</button>
         </div>
 
-        <!-- Footer Note -->
-        <div class="mt-8 text-center text-xs text-slate-400">
+        <!-- 计划列表 -->
+        <div class="plan-list" id="planList">
+            <div class="plan-item">
+                <input type="checkbox" onchange="toggleComplete(this)">
+                <div class="plan-content">
+                    <div class="plan-title" contenteditable="true">每天规律睡眠 7 小时</div>
+                </div>
+                <button class="delete-btn" onclick="deletePlan(this)">×</button>
+            </div>
+
+            <div class="plan-item">
+                <input type="checkbox" onchange="toggleComplete(this)">
+                <div class="plan-content">
+                    <div class="plan-title" contenteditable="true">周末出门晒一次太阳</div>
+                </div>
+                <button class="delete-btn" onclick="deletePlan(this)">×</button>
+            </div>
+
+            <div class="plan-item">
+                <input type="checkbox" onchange="toggleComplete(this)">
+                <div class="plan-content">
+                    <div class="plan-title" contenteditable="true">每周进行 3 次有氧运动</div>
+                </div>
+                <button class="delete-btn" onclick="deletePlan(this)">×</button>
+            </div>
+
+            <div class="plan-item">
+                <input type="checkbox" onchange="toggleComplete(this)">
+                <div class="plan-content">
+                    <div class="plan-title" contenteditable="true">全年完成 12 本好书阅读</div>
+                </div>
+                <button class="delete-btn" onclick="deletePlan(this)">×</button>
+            </div>
+
+            <div class="plan-item">
+                <input type="checkbox" onchange="toggleComplete(this)">
+                <div class="plan-content">
+                    <div class="plan-title" contenteditable="true">拥有一份双休+有加班费+不PUA+工资不低+能安心下班+有年假的工作</div>
+                </div>
+                <button class="delete-btn" onclick="deletePlan(this)">×</button>
+            </div>
+
+            <div class="plan-item">
+                <input type="checkbox" onchange="toggleComplete(this)">
+                <div class="plan-content">
+                    <div class="plan-title" contenteditable="true">存 20 万人民币</div>
+                </div>
+                <button class="delete-btn" onclick="deletePlan(this)">×</button>
+            </div>
+        </div>
+
+        <div class="footer">
             Keep going, you've got this! 🚀
         </div>
     </div>
 
+    <script>
+        // 回车快捷添加
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                addPlan();
+            }
+        }
+
+        // 添加新计划函数
+        function addPlan() {
+            const input = document.getElementById('planInput');
+            const text = input.value.trim();
+            if (!text) return;
+
+            const list = document.getElementById('planList');
+
+            const item = document.createElement('div');
+            item.className = 'plan-item';
+            item.innerHTML = `
+                <input type="checkbox" onchange="toggleComplete(this)">
+                <div class="plan-content">
+                    <div class="plan-title" contenteditable="true">${escapeHtml(text)}</div>
+                </div>
+                <button class="delete-btn" onclick="deletePlan(this)">×</button>
+            `;
+
+            list.appendChild(item);
+            input.value = '';
+        }
+
+        // 切换完成状态
+        function toggleComplete(checkbox) {
+            const item = checkbox.closest('.plan-item');
+            const title = item.querySelector('.plan-title');
+            if (checkbox.checked) {
+                item.classList.add('completed');
+                title.removeAttribute('contenteditable'); // 完成后锁定不可编辑
+            } else {
+                item.classList.remove('completed');
+                title.setAttribute('contenteditable', 'true'); // 取消勾选恢复可编辑
+            }
+        }
+
+        // 删除某一行
+        function deletePlan(btn) {
+            const item = btn.closest('.plan-item');
+            item.remove();
+        }
+
+        // HTML 转义防注入
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, function (m) { return map[m]; });
+        }
+    </script>
 </body>
+
 </html>
