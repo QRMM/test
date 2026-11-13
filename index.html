@@ -20,22 +20,22 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 30px 20px;
         }
 
         .container {
             background: #ffffff;
             width: 100%;
             max-width: 820px;
-            padding: 45px 35px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+            padding: 50px 45px;
+            border-radius: 24px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.07);
         }
 
         /* 头部居中区域 */
         .header-center {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
         .badge {
@@ -52,7 +52,7 @@
         }
 
         h1 {
-            font-size: 30px;
+            font-size: 32px;
             font-weight: 800;
             color: #1e293b;
             margin-bottom: 8px;
@@ -67,15 +67,15 @@
         .add-form {
             display: flex;
             gap: 12px;
-            margin-bottom: 28px;
+            margin-bottom: 32px;
         }
 
         .add-form input {
             flex: 1;
-            padding: 12px 16px;
+            padding: 14px 18px;
             border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            font-size: 14px;
+            border-radius: 14px;
+            font-size: 15px;
             outline: none;
             transition: all 0.2s;
             background-color: #fafcc;
@@ -91,13 +91,14 @@
             background: linear-gradient(135deg, #6366f1, #4f46e5);
             color: white;
             border: none;
-            padding: 12px 20px;
-            border-radius: 12px;
-            font-size: 14px;
+            padding: 14px 24px;
+            border-radius: 14px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
             transition: transform 0.1s, box-shadow 0.2s;
             box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+            white-space: nowrap;
         }
 
         .add-form button:hover {
@@ -110,20 +111,20 @@
             display: flex;
             flex-direction: column;
             gap: 14px;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
         .plan-item {
             display: flex;
             align-items: center;
-            padding: 16px 20px;
-            border-radius: 14px;
+            padding: 18px 24px;
+            border-radius: 16px;
             border: 1px solid rgba(0, 0, 0, 0.04);
             transition: all 0.25s ease;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
         }
 
-        /* 预设丰富清新的多彩色系搭配 */
+        /* 预设丰富清新的多彩色系搭配循环 */
         .plan-item:nth-child(6n+1) {
             background-color: #f5f3ff;
             border-color: #ddd6fe;
@@ -171,7 +172,7 @@
             height: 22px;
             accent-color: #6366f1;
             cursor: pointer;
-            margin-right: 16px;
+            margin-right: 18px;
             flex-shrink: 0;
         }
 
@@ -186,7 +187,7 @@
             color: #1e293b;
             outline: none;
             border-bottom: 1px dashed transparent;
-            padding: 2px 4px;
+            padding: 2px 6px;
             border-radius: 4px;
             word-break: break-all;
             transition: background-color 0.2s, border-color 0.2s;
@@ -217,10 +218,10 @@
             color: #94a3b8;
             font-size: 18px;
             cursor: pointer;
-            padding: 4px 8px;
+            padding: 4px 10px;
             border-radius: 6px;
             transition: all 0.2s;
-            margin-left: 10px;
+            margin-left: 12px;
         }
 
         .delete-btn:hover {
@@ -242,8 +243,8 @@
 <body>
 
     <div class="container">
-        <!-- 加上这个居中包裹层 -->
-        <div style="text-align: center; margin-bottom: 35px;">
+        <!-- 头部居中 -->
+        <div class="header-center">
             <div class="badge">2027 GOALS</div>
             <h1>✨ 2027 新年计划</h1>
             <div class="subtitle">健康生活，从点滴日常做起</div>
@@ -257,53 +258,7 @@
 
         <!-- 计划列表 -->
         <div class="plan-list" id="planList">
-            <div class="plan-item">
-                <input type="checkbox" onchange="toggleComplete(this)">
-                <div class="plan-content">
-                    <div class="plan-title" contenteditable="true">每天规律睡眠 7 小时</div>
-                </div>
-                <button class="delete-btn" onclick="deletePlan(this)">×</button>
-            </div>
-
-            <div class="plan-item">
-                <input type="checkbox" onchange="toggleComplete(this)">
-                <div class="plan-content">
-                    <div class="plan-title" contenteditable="true">周末出门晒一次太阳</div>
-                </div>
-                <button class="delete-btn" onclick="deletePlan(this)">×</button>
-            </div>
-
-            <div class="plan-item">
-                <input type="checkbox" onchange="toggleComplete(this)">
-                <div class="plan-content">
-                    <div class="plan-title" contenteditable="true">每周进行 3 次有氧运动</div>
-                </div>
-                <button class="delete-btn" onclick="deletePlan(this)">×</button>
-            </div>
-
-            <div class="plan-item">
-                <input type="checkbox" onchange="toggleComplete(this)">
-                <div class="plan-content">
-                    <div class="plan-title" contenteditable="true">全年完成 12 本好书阅读</div>
-                </div>
-                <button class="delete-btn" onclick="deletePlan(this)">×</button>
-            </div>
-
-            <div class="plan-item">
-                <input type="checkbox" onchange="toggleComplete(this)">
-                <div class="plan-content">
-                    <div class="plan-title" contenteditable="true">拥有一份双休+有加班费+不PUA+工资不低+能安心下班+有年假的工作</div>
-                </div>
-                <button class="delete-btn" onclick="deletePlan(this)">×</button>
-            </div>
-
-            <div class="plan-item">
-                <input type="checkbox" onchange="toggleComplete(this)">
-                <div class="plan-content">
-                    <div class="plan-title" contenteditable="true">存 20 万人民币</div>
-                </div>
-                <button class="delete-btn" onclick="deletePlan(this)">×</button>
-            </div>
+            <!-- 动态生成 -->
         </div>
 
         <div class="footer">
@@ -312,6 +267,65 @@
     </div>
 
     <script>
+        // 默认初始数据（如果本地没有存过）
+        const defaultPlans = [
+            { text: "每天规律睡眠 7 小时", completed: false },
+            { text: "周末出门晒一次太阳", completed: false },
+            { text: "每周进行 3 次有氧运动", completed: false },
+            { text: "全年完成 12 本好书阅读", completed: false },
+            { text: "拥有一份双休+有加班费+不PUA+工资不低+能安心下班+有年假的工作", completed: false },
+            { text: "存 20 万人民币", completed: false }
+        ];
+
+        // 页面加载时从 localStorage 读取数据
+        window.addEventListener('DOMContentLoaded', () => {
+            loadPlans();
+        });
+
+        // 渲染列表到页面
+        function renderPlans(plans) {
+            const list = document.getElementById('planList');
+            list.innerHTML = '';
+
+            plans.forEach((plan, index) => {
+                const item = document.createElement('div');
+                item.className = `plan-item ${plan.completed ? 'completed' : ''}`;
+
+                item.innerHTML = `
+                    <input type="checkbox" ${plan.completed ? 'checked' : ''} onchange="toggleComplete(${index})">
+                    <div class="plan-content">
+                        <div class="plan-title" ${plan.completed ? '' : 'contenteditable="true"'} onblur="updatePlanText(${index}, this)">${escapeHtml(plan.text)}</div>
+                    </div>
+                    <button class="delete-btn" onclick="deletePlan(${index})">×</button>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        // 获取当前所有数据
+        function getStoredPlans() {
+            const data = localStorage.getItem('my_2027_plans');
+            if (!data) {
+                return defaultPlans;
+            }
+            try {
+                return JSON.parse(data);
+            } catch (e) {
+                return defaultPlans;
+            }
+        }
+
+        // 保存数据到 localStorage
+        function savePlans(plans) {
+            localStorage.setItem('my_2027_plans', JSON.stringify(plans));
+        }
+
+        // 加载并渲染
+        function loadPlans() {
+            const plans = getStoredPlans();
+            renderPlans(plans);
+        }
+
         // 回车快捷添加
         function handleKeyPress(event) {
             if (event.key === 'Enter') {
@@ -319,45 +333,47 @@
             }
         }
 
-        // 添加新计划函数
+        // 添加新计划
         function addPlan() {
             const input = document.getElementById('planInput');
             const text = input.value.trim();
             if (!text) return;
 
-            const list = document.getElementById('planList');
+            const plans = getStoredPlans();
+            plans.push({ text: text, completed: false });
+            savePlans(plans);
+            renderPlans(plans);
 
-            const item = document.createElement('div');
-            item.className = 'plan-item';
-            item.innerHTML = `
-                <input type="checkbox" onchange="toggleComplete(this)">
-                <div class="plan-content">
-                    <div class="plan-title" contenteditable="true">${escapeHtml(text)}</div>
-                </div>
-                <button class="delete-btn" onclick="deletePlan(this)">×</button>
-            `;
-
-            list.appendChild(item);
             input.value = '';
         }
 
         // 切换完成状态
-        function toggleComplete(checkbox) {
-            const item = checkbox.closest('.plan-item');
-            const title = item.querySelector('.plan-title');
-            if (checkbox.checked) {
-                item.classList.add('completed');
-                title.removeAttribute('contenteditable'); // 完成后锁定不可编辑
-            } else {
-                item.classList.remove('completed');
-                title.setAttribute('contenteditable', 'true'); // 取消勾选恢复可编辑
+        function toggleComplete(index) {
+            const plans = getStoredPlans();
+            plans[index].completed = !plans[index].completed;
+            savePlans(plans);
+            renderPlans(plans);
+        }
+
+        // 修改目标文字（失去焦点时自动保存）
+        function updatePlanText(index, element) {
+            const newText = element.textContent.trim();
+            const plans = getStoredPlans();
+            if (newText === '') {
+                // 如果清空了，恢复原样
+                element.textContent = plans[index].text;
+                return;
             }
+            plans[index].text = newText;
+            savePlans(plans);
         }
 
         // 删除某一行
-        function deletePlan(btn) {
-            const item = btn.closest('.plan-item');
-            item.remove();
+        function deletePlan(index) {
+            const plans = getStoredPlans();
+            plans.splice(index, 1);
+            savePlans(plans);
+            renderPlans(plans);
         }
 
         // HTML 转义防注入
