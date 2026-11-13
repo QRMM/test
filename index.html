@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2027 新年计划</title>
+    <title>2027 新年计划与成长手记</title>
     <style>
         * {
             margin: 0;
@@ -30,6 +30,9 @@
             padding: 50px 45px;
             border-radius: 24px;
             box-shadow: 0 20px 45px rgba(0, 0, 0, 0.07);
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
         }
 
         /* 头部居中区域 */
@@ -63,7 +66,7 @@
             color: #64748b;
         }
 
-        /* 新增表单区域样式 */
+        /* 新增表单区域 */
         .add-form {
             display: flex;
             gap: 12px;
@@ -78,7 +81,7 @@
             font-size: 15px;
             outline: none;
             transition: all 0.2s;
-            background-color: #fafcc;
+            background-color: #fafafa;
         }
 
         .add-form input:focus {
@@ -112,6 +115,7 @@
             flex-direction: column;
             gap: 14px;
             margin-bottom: 35px;
+            flex: 1;
         }
 
         .plan-item {
@@ -124,43 +128,36 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
         }
 
-        /* 预设丰富清新的多彩色系搭配循环 */
+        /* 多彩马卡龙色循环 */
         .plan-item:nth-child(6n+1) {
             background-color: #f5f3ff;
             border-color: #ddd6fe;
         }
 
-        /* 淡紫 */
         .plan-item:nth-child(6n+2) {
             background-color: #f0fdf4;
             border-color: #bbf7d0;
         }
 
-        /* 薄荷绿 */
         .plan-item:nth-child(6n+3) {
             background-color: #fffbeb;
             border-color: #fde68a;
         }
 
-        /* 暖黄 */
         .plan-item:nth-child(6n+4) {
             background-color: #f0f9ff;
             border-color: #bae6fd;
         }
 
-        /* 天空蓝 */
         .plan-item:nth-child(6n+5) {
             background-color: #fdf2f8;
             border-color: #fbcfe8;
         }
 
-        /* 柔粉 */
         .plan-item:nth-child(6n+6) {
             background-color: #ecfdf5;
             border-color: #a7f3d0;
         }
-
-        /* 浅青 */
 
         .plan-item:hover {
             transform: translateY(-2px);
@@ -178,9 +175,9 @@
 
         .plan-content {
             flex: 1;
+            cursor: pointer;
         }
 
-        /* 可编辑的目标文本样式 */
         .plan-title {
             font-size: 15px;
             font-weight: 600;
@@ -204,14 +201,14 @@
             box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
         }
 
-        .plan-item.completed .plan-title {
-            text-decoration: line-through;
-            color: #94a3b8;
-            background-color: transparent !important;
-            border-color: transparent !important;
+        .detail-link-tip {
+            font-size: 12px;
+            color: #6366f1;
+            margin-top: 2px;
+            margin-left: 6px;
+            opacity: 0.8;
         }
 
-        /* 删除按钮样式 */
         .delete-btn {
             background: none;
             border: none;
@@ -229,6 +226,144 @@
             background-color: rgba(239, 68, 68, 0.1);
         }
 
+        /* 详情页样式 */
+        #detailView {
+            display: none;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .detail-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 16px;
+        }
+
+        .back-btn {
+            background-color: #e2e8f0;
+            color: #334155;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .back-btn:hover {
+            background-color: #cbd5e1;
+        }
+
+        .detail-title-box h2 {
+            font-size: 22px;
+            color: #1e293b;
+        }
+
+        .detail-section {
+            margin-bottom: 20px;
+        }
+
+        .detail-section label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 8px;
+        }
+
+        .detail-textarea {
+            width: 100%;
+            height: 180px;
+            padding: 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+            resize: vertical;
+            transition: border-color 0.2s;
+        }
+
+        .detail-textarea:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        }
+
+        .image-upload-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .file-input-label {
+            background-color: #f1f5f9;
+            color: #475569;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px dashed #cbd5e1;
+            transition: all 0.2s;
+        }
+
+        .file-input-label:hover {
+            background-color: #e2e8f0;
+            border-color: #94a3b8;
+        }
+
+        #imageInput {
+            display: none;
+        }
+
+        .image-preview-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .image-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            height: 100px;
+            background: #f8fafc;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .remove-img-btn {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .remove-img-btn:hover {
+            background: #ef4444;
+        }
+
         .footer {
             text-align: center;
             font-size: 13px;
@@ -236,6 +371,7 @@
             border-top: 1px solid #f1f5f9;
             padding-top: 20px;
             font-weight: 500;
+            margin-top: auto;
         }
     </style>
 </head>
@@ -243,22 +379,51 @@
 <body>
 
     <div class="container">
-        <!-- 头部居中 -->
-        <div class="header-center">
-            <div class="badge">2027 GOALS</div>
-            <h1>✨ 2027 新年计划</h1>
-            <div class="subtitle">健康生活，从点滴日常做起</div>
+        <!-- ================= 视图一：首页列表 ================= -->
+        <div id="homeView">
+            <div class="header-center">
+                <div class="badge">2027 GOALS</div>
+                <h1>✨ 2027 新年计划</h1>
+                <div class="subtitle">健康生活，从点滴日常做起（点击目标文字查看与记录详情）</div>
+            </div>
+
+            <div class="add-form">
+                <input type="text" id="planInput" placeholder="输入新的计划目标..." onkeypress="handleKeyPress(event)">
+                <button onclick="addPlan()">添加目标</button>
+            </div>
+
+            <div class="plan-list" id="planList">
+                <!-- 动态生成 -->
+            </div>
         </div>
 
-        <!-- 动态新增输入框 -->
-        <div class="add-form">
-            <input type="text" id="planInput" placeholder="输入新的计划目标（可直接点击文字修改）..." onkeypress="handleKeyPress(event)">
-            <button onclick="addPlan()">添加目标</button>
-        </div>
+        <!-- ================= 视图二：目标详情与记录页 ================= -->
+        <div id="detailView">
+            <div class="detail-header">
+                <button class="back-btn" onclick="goBackToHome()">← 返回列表</button>
+                <div class="detail-title-box">
+                    <h2 id="currentDetailTitle">目标详情</h2>
+                </div>
+                <div style="width: 70px;"></div>
+            </div>
 
-        <!-- 计划列表 -->
-        <div class="plan-list" id="planList">
-            <!-- 动态生成 -->
+            <div class="detail-section">
+                <label>📝 设想与达成情况记录</label>
+                <textarea id="detailNotes" class="detail-textarea" placeholder="在此记录你的设想、实施步骤、复盘总结或心情感悟..."
+                    oninput="autoSaveDetail()"></textarea>
+            </div>
+
+            <div class="detail-section">
+                <label>🖼️ 相关图片凭证 / 瞬间记录</label>
+                <div class="image-upload-box">
+                    <label class="file-input-label" for="imageInput">➕ 选择上传图片</label>
+                    <input type="file" id="imageInput" accept="image/*" multiple onchange="handleImageUpload(event)">
+                    <span style="font-size: 12px; color: #94a3b8;">支持多张图片上传，自动保存在本地</span>
+                </div>
+                <div class="image-preview-container" id="imagePreviewContainer">
+                    <!-- 动态图片卡片 -->
+                </div>
+            </div>
         </div>
 
         <div class="footer">
@@ -267,100 +432,86 @@
     </div>
 
     <script>
-        // 默认初始数据（如果本地没有存过）
+        // 默认初始数据
         const defaultPlans = [
-            { text: "每天规律睡眠 7 小时", completed: false },
-            { text: "周末出门晒一次太阳", completed: false },
-            { text: "每周进行 3 次有氧运动", completed: false },
-            { text: "全年完成 12 本好书阅读", completed: false },
-            { text: "拥有一份双休+有加班费+不PUA+工资不低+能安心下班+有年假的工作", completed: false },
-            { text: "存 20 万人民币", completed: false }
+            { id: 1, text: "每天规律睡眠 7 小时", completed: false, notes: "", images: [] },
+            { id: 2, text: "周末出门晒一次太阳", completed: false, notes: "", images: [] },
+            { id: 3, text: "每周进行 3 次有氧运动", completed: false, notes: "", images: [] },
+            { id: 4, text: "全年完成 12 本好书阅读", completed: false, notes: "", images: [] },
+            { id: 5, text: "拥有一份双休+有加班费+不PUA+工资不低+能安心下班+有年假的工作", completed: false, notes: "", images: [] },
+            { id: 6, text: "存 20 万人民币", completed: false, notes: "", images: [] }
         ];
 
-        // 页面加载时从 localStorage 读取数据
+        let currentActiveIndex = null;
+
         window.addEventListener('DOMContentLoaded', () => {
             loadPlans();
         });
 
-        // 渲染列表到页面
-        function renderPlans(plans) {
+        function getStoredPlans() {
+            const data = localStorage.getItem('my_2027_plans_v2');
+            if (!data) return defaultPlans;
+            try { return JSON.parse(data); } catch (e) { return defaultPlans; }
+        }
+
+        function savePlans(plans) {
+            localStorage.setItem('my_2027_plans_v2', JSON.stringify(plans));
+        }
+
+        // 渲染首页列表
+        function loadPlans() {
+            const plans = getStoredPlans();
             const list = document.getElementById('planList');
             list.innerHTML = '';
 
             plans.forEach((plan, index) => {
                 const item = document.createElement('div');
-                item.className = `plan-item ${plan.completed ? 'completed' : ''}`;
+                item.className = `plan-item`;
 
                 item.innerHTML = `
-                    <input type="checkbox" ${plan.completed ? 'checked' : ''} onchange="toggleComplete(${index})">
-                    <div class="plan-content">
-                        <div class="plan-title" ${plan.completed ? '' : 'contenteditable="true"'} onblur="updatePlanText(${index}, this)">${escapeHtml(plan.text)}</div>
+                    <input type="checkbox" ${plan.completed ? 'checked' : ''} onchange="toggleComplete(${index}, event)">
+                    <div class="plan-content" onclick="openDetail(${index})">
+                        <div class="plan-title" contenteditable="true" onblur="updatePlanText(${index}, this, event)" onclick="event.stopPropagation()">${escapeHtml(plan.text)}</div>
+                        <div class="detail-link-tip">👉 点击查看手记记录 (${plan.images ? plan.images.length : 0} 图)</div>
                     </div>
-                    <button class="delete-btn" onclick="deletePlan(${index})">×</button>
+                    <button class="delete-btn" onclick="deletePlan(${index}, event)">×</button>
                 `;
                 list.appendChild(item);
             });
         }
 
-        // 获取当前所有数据
-        function getStoredPlans() {
-            const data = localStorage.getItem('my_2027_plans');
-            if (!data) {
-                return defaultPlans;
-            }
-            try {
-                return JSON.parse(data);
-            } catch (e) {
-                return defaultPlans;
-            }
-        }
-
-        // 保存数据到 localStorage
-        function savePlans(plans) {
-            localStorage.setItem('my_2027_plans', JSON.stringify(plans));
-        }
-
-        // 加载并渲染
-        function loadPlans() {
-            const plans = getStoredPlans();
-            renderPlans(plans);
-        }
-
-        // 回车快捷添加
-        function handleKeyPress(event) {
-            if (event.key === 'Enter') {
-                addPlan();
-            }
-        }
-
-        // 添加新计划
+        // 添加新目标
         function addPlan() {
             const input = document.getElementById('planInput');
             const text = input.value.trim();
             if (!text) return;
 
             const plans = getStoredPlans();
-            plans.push({ text: text, completed: false });
+            plans.push({ id: Date.now(), text: text, completed: false, notes: "", images: [] });
             savePlans(plans);
-            renderPlans(plans);
-
+            loadPlans();
             input.value = '';
         }
 
-        // 切换完成状态
-        function toggleComplete(index) {
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') addPlan();
+        }
+
+        // 勾选状态（保留文字本身不加删除线）
+        function toggleComplete(index, event) {
+            event.stopPropagation();
             const plans = getStoredPlans();
             plans[index].completed = !plans[index].completed;
             savePlans(plans);
-            renderPlans(plans);
+            loadPlans();
         }
 
-        // 修改目标文字（失去焦点时自动保存）
-        function updatePlanText(index, element) {
+        // 修改目标文字
+        function updatePlanText(index, element, event) {
+            event.stopPropagation();
             const newText = element.textContent.trim();
             const plans = getStoredPlans();
-            if (newText === '') {
-                // 如果清空了，恢复原样
+            if (!newText) {
                 element.textContent = plans[index].text;
                 return;
             }
@@ -368,23 +519,96 @@
             savePlans(plans);
         }
 
-        // 删除某一行
-        function deletePlan(index) {
-            const plans = getStoredPlans();
-            plans.splice(index, 1);
-            savePlans(plans);
-            renderPlans(plans);
+        // 删除目标
+        function deletePlan(index, event) {
+            event.stopPropagation();
+            if (confirm('确定要删除这个目标吗？')) {
+                const plans = getStoredPlans();
+                plans.splice(index, 1);
+                savePlans(plans);
+                loadPlans();
+            }
         }
 
-        // HTML 转义防注入
+        // ================= 详情页逻辑 =================
+        function openDetail(index) {
+            currentActiveIndex = index;
+            const plans = getStoredPlans();
+            const plan = plans[index];
+
+            document.getElementById('currentDetailTitle').textContent = plan.text;
+            document.getElementById('detailNotes').value = plan.notes || "";
+            renderImages(plan.images || []);
+
+            document.getElementById('homeView').style.display = 'none';
+            document.getElementById('detailView').style.display = 'flex';
+        }
+
+        function goBackToHome() {
+            currentActiveIndex = null;
+            document.getElementById('detailView').style.display = 'none';
+            document.getElementById('homeView').style.display = 'block';
+            loadPlans();
+        }
+
+        function autoSaveDetail() {
+            if (currentActiveIndex === null) return;
+            const plans = getStoredPlans();
+            const notes = document.getElementById('detailNotes').value;
+            plans[currentActiveIndex].notes = notes;
+            savePlans(plans);
+        }
+
+        function handleImageUpload(event) {
+            const files = event.target.files;
+            if (!files || files.length === 0) return;
+
+            const plans = getStoredPlans();
+            if (!plans[currentActiveIndex].images) {
+                plans[currentActiveIndex].images = [];
+            }
+
+            let loadedCount = 0;
+            Array.from(files).forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    plans[currentActiveIndex].images.push(e.target.result);
+                    loadedCount++;
+                    if (loadedCount === files.length) {
+                        savePlans(plans);
+                        renderImages(plans[currentActiveIndex].images);
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
+            event.target.value = '';
+        }
+
+        function renderImages(images) {
+            const container = document.getElementById('imagePreviewContainer');
+            container.innerHTML = '';
+
+            images.forEach((imgSrc, imgIndex) => {
+                const card = document.createElement('div');
+                card.className = 'image-card';
+                card.innerHTML = `
+                    <img src="${imgSrc}" alt="达成凭证">
+                    <button class="remove-img-btn" onclick="removeImage(${imgIndex})">×</button>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function removeImage(imgIndex) {
+            if (currentActiveIndex === null) return;
+            const plans = getStoredPlans();
+            plans[currentActiveIndex].images.splice(imgIndex, 1);
+            savePlans(plans);
+            renderImages(plans[currentActiveIndex].images);
+        }
+
         function escapeHtml(text) {
-            const map = {
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#039;'
-            };
+            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
             return text.replace(/[&<>"']/g, function (m) { return map[m]; });
         }
     </script>
